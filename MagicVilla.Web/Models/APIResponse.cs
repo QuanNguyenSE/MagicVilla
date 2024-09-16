@@ -1,8 +1,8 @@
 ﻿using System.Net;
 
-namespace MagicVilla.API.Models
+namespace MagicVilla.Web.Models
 {
-    public class Respone
+    public class APIResponse
     {
         public HttpStatusCode StatusCode { get; set; }
         public bool IsSuccess { get; set; } = true;

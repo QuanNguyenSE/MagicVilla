@@ -11,7 +11,7 @@ namespace MagicVilla.API.Controllers
     [ApiController]
     public class VillaNumberAPIController : ControllerBase
     {
-        protected Respone _respone;
+        protected APIResponse _respone;
         private readonly IVillaNumberRepository _dbVillaNumber;
         private readonly IVillaRepository _dbVilla;
 
@@ -21,13 +21,13 @@ namespace MagicVilla.API.Controllers
         {
             _dbVillaNumber = dbVillaNumber;
             _mapper = mapper;
-            _respone = new Respone();
+            _respone = new APIResponse();
             _dbVilla = dbVilla;
         }
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<Respone>> GetVillaNumbers()
+        public async Task<ActionResult<APIResponse>> GetVillaNumbers()
         {
             try
             {
@@ -47,7 +47,7 @@ namespace MagicVilla.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Respone>> GetVillaNumber(int id)
+        public async Task<ActionResult<APIResponse>> GetVillaNumber(int id)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace MagicVilla.API.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<Respone>> CreateVillaNumber([FromBody] VillaNumberCreateDTO villaNumberCreateDTO)
+        public async Task<ActionResult<APIResponse>> CreateVillaNumber([FromBody] VillaNumberCreateDTO villaNumberCreateDTO)
         {
             try
             {
@@ -112,7 +112,7 @@ namespace MagicVilla.API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpDelete("{id:int}", Name = "DeleteVillaNumber")]
-        public async Task<ActionResult<Respone>> DeleteVillaNumber(int id)
+        public async Task<ActionResult<APIResponse>> DeleteVillaNumber(int id)
         {
             try
             {
@@ -142,7 +142,7 @@ namespace MagicVilla.API.Controllers
         [HttpPut("{id:int}", Name = "UpdateVillaNumber")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Respone>> UpdateVillaNumber(int id, [FromBody] VillaNumberUpdateDTO villaNumberUpdateDTO)
+        public async Task<ActionResult<APIResponse>> UpdateVillaNumber(int id, [FromBody] VillaNumberUpdateDTO villaNumberUpdateDTO)
         {
             try
             {

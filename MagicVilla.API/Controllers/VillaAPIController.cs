@@ -13,7 +13,7 @@ namespace MagicVilla.API.Controllers
     [ApiController]
     public class VillaAPIController : ControllerBase
     {
-        protected Respone _respone;
+        protected APIResponse _respone;
         private readonly IVillaRepository _dbVilla;
         private readonly IMapper _mapper;
 
@@ -21,12 +21,12 @@ namespace MagicVilla.API.Controllers
         {
             _dbVilla = dbVilla;
             _mapper = mapper;
-            _respone = new Respone();
+            _respone = new APIResponse();
         }
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<Respone>> GetVillas()
+        public async Task<ActionResult<APIResponse>> GetVillas()
         {
             try
             {
@@ -47,7 +47,7 @@ namespace MagicVilla.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         //[ProducesResponseType(200, Type =typeof(VillaDTO))]
-        public async Task<ActionResult<Respone>> GetVilla(int id)
+        public async Task<ActionResult<APIResponse>> GetVilla(int id)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace MagicVilla.API.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<Respone>> CreateVilla([FromBody] VillaCreateDTO villaCreateDTO)
+        public async Task<ActionResult<APIResponse>> CreateVilla([FromBody] VillaCreateDTO villaCreateDTO)
         {
             try
             {
@@ -105,7 +105,7 @@ namespace MagicVilla.API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpDelete("{id:int}", Name = "DeleteVilla")]
-        public async Task<ActionResult<Respone>> DeleteVilla(int id)
+        public async Task<ActionResult<APIResponse>> DeleteVilla(int id)
         {
             try
             {
@@ -135,7 +135,7 @@ namespace MagicVilla.API.Controllers
         [HttpPut("{id:int}", Name = "UpdateVilla")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Respone>> UpdateVilla(int id, [FromBody] VillaUpdateDTO villaUpdateDTO)
+        public async Task<ActionResult<APIResponse>> UpdateVilla(int id, [FromBody] VillaUpdateDTO villaUpdateDTO)
         {
             try
             {
