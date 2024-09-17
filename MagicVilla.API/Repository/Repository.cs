@@ -21,7 +21,7 @@ namespace MagicVilla.API.Repository
             await SaveAsync();
         }
 
-        public async Task<T> GetAsync(Expression<Func<T, bool>> filter = null, bool tracking = true)
+        public async Task<T> GetAsync(Expression<Func<T, bool>> filter = null, bool tracking = true, string? includeProperties = null)
         {
             IQueryable<T> query = _dbSet;
             if (!tracking)
@@ -32,16 +32,30 @@ namespace MagicVilla.API.Repository
             {
                 query = query.Where(filter);
             }
+            if (includeProperties != null)
+            {
+                foreach (var property in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(property);
+                }
+            }
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null)
+        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
         {
             IQueryable<T> query = _dbSet;
 
             if (filter != null)
             {
                 query = query.Where(filter);
+            }
+            if (includeProperties != null)
+            {
+                foreach (var property in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(property);
+                }
             }
             return await query.ToListAsync();
         }
