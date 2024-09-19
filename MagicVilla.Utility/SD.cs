@@ -9,6 +9,6 @@
             Put,
             Delete
         }
-
+        public static string SessionToken = "JWTToken";
     }
 }
