@@ -39,7 +39,7 @@ namespace MagicVilla.API.Controllers
             bool isunique = _userRepository.IsUniqueUser(regisDTO.UserName);
             if (isunique)
             {
-                LocalUser user = await _userRepository.Register(regisDTO);
+                var user = await _userRepository.Register(regisDTO);
                 if (user == null)
                 {
                     _respone.IsSuccess = false;

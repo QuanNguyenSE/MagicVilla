@@ -27,6 +27,7 @@ namespace MagicVilla.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [ResponseCache(CacheProfileName = "Default30")]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
